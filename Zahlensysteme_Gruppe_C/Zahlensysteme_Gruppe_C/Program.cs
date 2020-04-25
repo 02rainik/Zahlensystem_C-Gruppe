@@ -7,8 +7,13 @@ namespace Zahlensysteme_Gruppe_C
 {
     class Program
     {
-        static string Eingabezahl,Eingabemodus;
+
+        static string Eingabezahl,Eingabemodus, DecZahl;
+      
+
+        
         static int HexorBin = 0;
+
         /// <summary>
         /// Zahlensysteme_Gruppe_C
         /// </summary>
@@ -16,7 +21,7 @@ namespace Zahlensysteme_Gruppe_C
         static void Main(string[] args)
         {
             Console.WriteLine("Titel");
-            do
+           do
             {
                 Console.WriteLine("Bitte Geben Sie die Binärzahl ein");
                 Eingabezahl = Console.ReadLine();
@@ -32,8 +37,17 @@ namespace Zahlensysteme_Gruppe_C
                 HexorBin = HexoderBin(Eingabemodus);
             } while (HexorBin == 0);
 
+            
+        }
+             
 
-            Console.ReadKey();
+           static string Dezimal(string Zahl)
+        {
+            DecZahl = Convert.ToInt32(Eingabezahl, 2).ToString();
+            return (DecZahl);     
+
+
+
         }
 
         static bool BinZahlTest(string BinZahl)
