@@ -38,10 +38,8 @@ namespace Zahlensysteme_Gruppe_C
             } while (HexorBin == 0);
 
             
-        }
-             
-
-           static string Dezimal(string Zahl)
+        }          
+        static string Dezimal(string Zahl)
         {
             DecZahl = Convert.ToInt32(Eingabezahl, 2).ToString();
             return (DecZahl);     
@@ -49,7 +47,6 @@ namespace Zahlensysteme_Gruppe_C
 
 
         }
-
         static bool BinZahlTest(string BinZahl)
         {
             bool istdieZahlBin = true;
@@ -63,8 +60,6 @@ namespace Zahlensysteme_Gruppe_C
             }
             return istdieZahlBin;
         }
-
-
         static int HexoderBin(string Auswahl)
         {
             if (Auswahl == "HEX")
@@ -73,6 +68,12 @@ namespace Zahlensysteme_Gruppe_C
                 return 2;
             else
                 return 0;                    
+        }
+        static string BinToHex(string Zahl)
+        {
+            string Hex = String.Format("{0:X4}", Convert.ToInt32(Zahl, 2));
+
+            return Hex;
         }
 
 	}
