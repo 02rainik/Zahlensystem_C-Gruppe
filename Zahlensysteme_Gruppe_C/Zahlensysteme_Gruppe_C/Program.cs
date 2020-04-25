@@ -12,7 +12,7 @@ namespace Zahlensysteme_Gruppe_C
       
 
         
-        static int HexorBin = 0;
+        static int HexorDec = 0;
 
         /// <summary>
         /// Zahlensysteme_Gruppe_C
@@ -34,19 +34,23 @@ namespace Zahlensysteme_Gruppe_C
 
                 Console.WriteLine("In welches Zahlensystem wollen sie ihre Zahl konvertieren?(Hex/Dec)");
                 Eingabemodus = Console.ReadLine().ToUpper();
-                HexorBin = HexoderBin(Eingabemodus);
-            } while (HexorBin == 0);
+                HexorDec = HexoderDec(Eingabemodus);
+
+            } while (HexorDec == 0);
+
+            if (HexorDec == 1)
+            {
+                Console.WriteLine(BinToHex(Eingabezahl));
+            }
+            else if (HexorDec == 2)
+            {
+                Console.WriteLine(Dezimal(Eingabezahl));
+            }
+            Console.ReadKey();
 
             
         }          
-        static string Dezimal(string Zahl)
-        {
-            DecZahl = Convert.ToInt32(Eingabezahl, 2).ToString();
-            return (DecZahl);     
-
-
-
-        }
+        
         static bool BinZahlTest(string BinZahl)
         {
             bool istdieZahlBin = true;
@@ -60,11 +64,12 @@ namespace Zahlensysteme_Gruppe_C
             }
             return istdieZahlBin;
         }
-        static int HexoderBin(string Auswahl)
+        static int HexoderDec(string Auswahl) // 1 = HEX; 2 = DEC
+
         {
             if (Auswahl == "HEX")
                 return 1;
-            else if (Auswahl == "DEX")
+            else if (Auswahl == "DEC")
                 return 2;
             else
                 return 0;                    
@@ -74,6 +79,14 @@ namespace Zahlensysteme_Gruppe_C
             string Hex = String.Format("{0:X4}", Convert.ToInt32(Zahl, 2));
 
             return Hex;
+        }
+        static string Dezimal(string Zahl)
+        {
+            DecZahl = Convert.ToInt32(Eingabezahl, 2).ToString();
+            return (DecZahl);
+
+
+
         }
 
 	}
