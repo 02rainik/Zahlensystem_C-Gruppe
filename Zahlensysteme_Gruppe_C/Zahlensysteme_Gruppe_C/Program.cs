@@ -8,6 +8,7 @@ namespace Zahlensysteme_Gruppe_C
     class Program
     {
         static string Eingabezahl,Eingabemodus;
+        static int HexorBin = 0;
         /// <summary>
         /// Zahlensysteme_Gruppe_C
         /// </summary>
@@ -15,52 +16,53 @@ namespace Zahlensysteme_Gruppe_C
         static void Main(string[] args)
         {
             Console.WriteLine("Titel");
-            Console.WriteLine("Bitte Geben Sie die Binärzahl ein");         
-            Eingabezahl = Console.ReadLine();
-            Console.WriteLine("In welches Zahlensystem wollen sie ihre Zahl konvertieren?(Hex/Dec)");
-            Eingabemodus = Console.ReadLine();
+            do
+            {
+                Console.WriteLine("Bitte Geben Sie die Binärzahl ein");
+                Eingabezahl = Console.ReadLine();
+
+            } while (!(BinZahlTest(Eingabezahl)));
+
+
+            do
+            {
+
+                Console.WriteLine("In welches Zahlensystem wollen sie ihre Zahl konvertieren?(Hex/Dec)");
+                Eingabemodus = Console.ReadLine().ToUpper();
+                HexorBin = HexoderBin(Eingabemodus);
+            } while (HexorBin == 0);
+
 
             Console.ReadKey();
         }
 
-        /// <summary>
-        /// 0 = Nix / 1 = Hex / 2 = Dec
-        /// </summary>
-        static int HexorBin = 4;
-        /// <summary>
-        /// Auswahl zwischen Hex ind Bin
-        /// </summary>
-        /// <param name="Eingabe">Benuzer Eingabe</param>
-        static void Switch(string Auswahl, string BinZahl)
+        static bool BinZahlTest(string BinZahl)
         {
+            bool istdieZahlBin = true;
             for (int i = 0; i < BinZahl.Length; i++)
-			{
-                if (Convert.ToInt32(BinZahl.Substring(i, 1)) == 0 || Convert.ToInt32(BinZahl.Substring(i, 1)) == 1)
+            {
+                if (!(Convert.ToInt32(BinZahl.Substring(i, 1)) == 0 || Convert.ToInt32(BinZahl.Substring(i, 1)) == 1))
                 {
-                    switch (Auswahl)
-                    {
-                        case "Hex":
-                            HexorBin = 1;
-                            break;
-
-                        case "Dec":
-                            HexorBin = 2;
-                            break;
-
-                        default:
-                            HexorBin = 0;
-                            Console.WriteLine("Fehlerhafte Eingabe");
-                            break;
-                    }
+                    istdieZahlBin = false;
                 }
-                else
-                {
-                    Console.WriteLine("Eingabe ist keine Binärzahl");
-                }
-			}
-
-
-
+                
+            }
+            return istdieZahlBin;
         }
-    }
+
+
+        static int HexoderBin(string Auswahl)
+        {
+            if (Auswahl == "HEX")
+                return 1;
+            else if (Auswahl == "DEX")
+                return 2;
+            else
+                return 0;                    
+        }
+
+	}
+
 }
+
+
